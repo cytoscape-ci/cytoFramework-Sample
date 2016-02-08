@@ -1,22 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { Map } from 'immutable'
-import store from './state/store/store.jsx'
-import DevTools from './containers/DevTools.jsx'
+import networkFinder from './state/reducers/networkFinderReducer.jsx'
 import NetworkFinderContainer from './containers/NetworkFinderContainer.jsx'
+import CytoFramework from 'cyto-framework'
 require("./styles/app.scss")
 
-const redux = store()
+console.log(CytoFramework)
 
-ReactDOM.render(
-  <Provider store={redux}>
-      <NetworkFinderContainer/>
-  </Provider>,
- document.getElementById('frame'))
+var cyto = new CytoFramework({ networkFinder })
 
- ReactDOM.render(
-   <Provider store={redux}>
-       <DevTools/>
-   </Provider>,
-  document.getElementById('devtools'))
+cyto.dev(document.getElementById('devtools'))
+cyto.render(document.getElementById('frame'), NetworkFinderContainer)
